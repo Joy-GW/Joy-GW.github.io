@@ -5,7 +5,7 @@ title: Home
 {% for post in paginator.posts %}
 
 <div class="post">
-    <h2 id = "post-title"><a href="{{ post.url  | relative_url }}">{{ post.title }}</a></h2>
+    <h2 id="post-title">{{ post.title }}</h2>
 
     {% if site.data.settings.date-under-post.active %} 
     <div class = "post-info">
@@ -29,12 +29,14 @@ title: Home
     {% endif %}
 
     <p>
-        {% if post.customexcerpt %}
+        
+<!--         {% if post.customexcerpt %}
             {{post.customexcerpt | strip_html | truncatewords:50}}
         {% else %}
-            {{ post.content | strip_html | truncatewords:50 }}
+            {{ post.content | strip_html | truncatewords:50 }} -->
+    {{ post.content | markdownify }}  <!-- 直接显示文章内容，并将其转换为 HTML -->
         {% endif %}
-        <span class = "continue-reading"><a href="{{ post.url | relative_url }}">Continue reading...</a></span>
+<!--         <span class = ""continue-reading""><a href="{{ post.url | relative_url }}">  For Details ...</a></span> -->
     </p> 
 </div>
 {% endfor %}
